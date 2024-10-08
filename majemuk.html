@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Bunga Majemuk</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    text-align: center;
+    padding: 50px;
+}
+
+.container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 400px;
+    margin: auto;
+}
+
+h1 {
+    color: #333;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+}
+
+input {
+    padding: 10px;
+    width: calc(100% - 22px);
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: grey;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+button:hover {
+    background-color: black;
+    color: white;
+}
+
+#hasilAkhir {
+    font-size: 1.5em;
+    color: #333;
+    margin-top: 20px;
+}
+
+a {
+            text-decoration: none;
+            color: black;
+            margin-top: 20px;   
+            font-size: 14px;
+            padding: 10px;
+            background-color: grey;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: black;
+            color: white;   
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bunga Majemuk</h1>
+        <form id="formBunga">
+            <label for="modalAwal">Modal Awal (Rp):</label>
+            <input type="number" id="modalAwal" placeholder="Masukkan modal awal" required><br>
+
+            <label for="sukuBunga">Suku Bunga (%) :</label>
+            <input type="number" id="sukuBunga" step="0.01 " placeholder="input dalam bentuk persen" required><br>
+
+            <label for="periode">Periode (n) :</label>
+            <input type="number" id="periode" placeholder="Masukkan periode (tahun)"><br>
+
+            <button type="button" onclick="hitungBunga()">Hitung</button> <br>
+
+            <a href="tunggal.html">Pindah Menghitung Bunga Tunggal</a>
+        </form>
+
+        <h2>Hasil Akhir:</h2>
+        <p id="hasilAkhir">Rp 0</p>
+    </div>
+
+    <script>
+        function formatRupiah(angka) {
+    let reverse = angka.toString().split('').reverse().join('');
+    let ribuan = reverse.match(/\d{1,3}/g);
+    return 'Rp ' + ribuan.join('.').split('').reverse().join('');
+}
+
+function hitungBunga() {
+    let M = parseFloat(document.getElementById('modalAwal').value);
+    let i = parseFloat(document.getElementById('sukuBunga').value) / 100;
+    let n = parseInt(document.getElementById('periode').value); 
+
+    let M0 = M * Math.pow((1 + i), n);
+    document.getElementById('hasilAkhir').innerText = formatRupiah(Math.round(M0));
+}
+
+    </script>
+</body>
+</html>

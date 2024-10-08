@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Bunga Tunggal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .calculator {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding-bottom: 50px;
+        }
+        h1 {
+            text-align: center;
+        }
+        input {
+            width: 50%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        button {
+            width: 40%;
+            padding: 10px;
+            background-color: grey;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        button:hover {
+            background-color: black;
+            color: white;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+        a {
+            text-decoration: none;
+            color: black;
+            margin-top: 20px;   
+            font-size: 14px;
+            padding: 10px;
+            background-color: grey;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: black;
+            color: white;   
+        }
+    </style>
+</head>
+<body>
+<center>
+<div class="calculator" >
+    <h1>Bunga Tunggal</h1>
+    <label for="principal">Modal Awal (M):</label> 
+    <input type="number" id="principal" placeholder="Masukkan modal awal" required> <br>
+
+    <label for="rate">Suku Bunga (i):</label>
+    <input type="number" id="rate" placeholder="input desimal, misalnya 0.05 untuk 5%" required> <br>
+
+    <label for="period">Jumlah Periode (n):</label>
+    <input type="number" id="period" placeholder="Masukkan jumlah periode (tahun)" required> 
+
+    <button onclick="calculateSimpleInterest()">Hitung Bunga Tunggal</button> <br>
+    <a href="majemuk.html">Pindah Menghitung Bunga Majemuk</a>
+    <div class="result" id="result"></div>
+
+    
+
+
+</div>
+
+
+<script>
+    function formatRupiah(angka) {
+        return 'Rp ' + Number(angka).toLocaleString('id-ID', {minimumFractionDigits: 2});
+    }
+
+    function calculateSimpleInterest() {
+        // Ambil nilai input
+        let M = parseFloat(document.getElementById("principal").value);
+        let i = parseFloat(document.getElementById("rate").value);
+        let n = parseFloat(document.getElementById("period").value);
+
+        // Hitung bunga tunggal
+        let B = n * i * M; // Bunga
+        let Mo = B + M; // Jumlah akhir
+
+        // Tampilkan hasil
+        document.getElementById("result").innerHTML = `
+            Bunga = ${formatRupiah(B)}<br>
+            Jumlah Akhir = ${formatRupiah(Mo)}
+        `;
+    }
+</script>
+</center>
+</body>
+</html>
